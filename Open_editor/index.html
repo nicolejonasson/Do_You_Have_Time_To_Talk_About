@@ -1,0 +1,106 @@
+<!doctype html>
+<!-- See http://www.firepad.io/docs/ for detailed embedding docs. -->
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+
+  <!-- CodeMirror -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
+
+  <!-- Firepad -->
+  <link rel="stylesheet" href="styles.css" type="text/css">
+  <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+  <script src="js/jquery-min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/jquery.js"></script>
+
+
+
+
+
+
+
+
+</head>
+
+<body onload="init()">
+  <!-- <div id = "head"> <p>Add links and comments in the document belove: </p></div> -->
+
+  <div class = firepad-wrapper>
+    <img src="img/logo-new.png">
+    <!-- <p>Add links and comments in the document belove: </p> -->
+    <div id="firepad-0"></div>
+  </div>
+
+  <div id= "grad">
+    <div id="change">CHANGE <br> Background Color</div>
+    <button onclick = "grad('color-input')" > Paint </button>
+    <input type = "text" id="color-input" value = "Write a color">
+
+  <div  class="colors"> <span> TRY FX. <br></span>
+    fuchsia <br>
+    lavender <br>
+    lime <br>
+    mediumAquaMarine<br>
+    mistyRose <br>
+    orangeRed <br>
+    turquoise <br>
+    thistle <br>
+    paleGreen <br>
+    lightSalmon <br>
+    honeyDew <br>
+    darkslatesrey <br>
+    aqua <br>
+    aliceblue <br>
+    sienna<br>
+  </div>
+  </div>
+
+
+  <script>
+    function init() {
+      // // Initialize Firebase.
+      // // TODO: replace with your Firebase project configuration.
+      var config = {
+        apiKey: "AIzaSyDpsWF1GxN3y9PZMeFRHYivJ6MzF4ZkHHU",
+        authDomain: "doyouhavetimetotalkaabout.firebaseapp.com",
+        databaseURL: "https://doyouhavetimetotalkaabout.firebaseio.com/",
+        projectId: "doyouhavetimetotalkaabout",
+        storageBucket: "doyouhavetimetotalkaabout.appspot.com",
+        messagingSenderId: "600050575080"
+
+      };
+      firebase.initializeApp(config);
+
+
+      for (var i = 0; i < 4; i++) {
+
+        var firepadRef = firebase.database().ref("box"+i);
+
+        var codeMirror = CodeMirror(document.getElementById("firepad-"+i), { lineWrapping: true });
+
+        var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+          richTextShortcuts: true,
+          richTextToolbar: true,
+        });
+      }
+  }
+  function grad(color){
+    var x = document.getElementById(color).value;
+    var v = "red";
+
+    $('body').css({'background-image': 'linear-gradient(to top,  white 0%,'+ x +' 50%, white 100%)'});
+    console.log(x);
+
+  }
+
+
+  </script>
+</body>
