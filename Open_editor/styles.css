@@ -232,8 +232,8 @@ a.firepad-btn:hover {
 }
 
 .firepad-color-dropdown-item {
-  height: 10%;
-  width: 10%;
+  height: 20px;
+  width: 20px;
   line-height: 20px;
 }
 
